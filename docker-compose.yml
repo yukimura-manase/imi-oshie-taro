@@ -1,0 +1,17 @@
+# versionは、3系
+version: "3"
+# Serviceを設定する
+services:
+  # Service名は、自由に決めていい
+  imi-oshie-taro:
+    # DockerfileまでのPath
+    build: .
+    # ホストマシン:コンテナ => ファイルを共有するための設定
+    volumes:
+      - ./app:/usr/src/app
+    # ホストマシンPort番号:コンテナのPost番号
+    ports:
+      # Next.js との ポートフォワード
+      - 3015:3000
+    # CLI画面の操作をできるようにする
+    tty: true
