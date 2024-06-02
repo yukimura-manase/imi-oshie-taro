@@ -33,8 +33,9 @@ const extractedWordTextToObj = (text:string): ExtractedWord => {
 
         const isWordStr = text.match(is_word_regex)
         const isWord = isWordStr?.[1].includes('Y') ? true : false
-        const word = text.match(word_regex)
+        if (!isWord) return { isWord: false, value: null }
 
+        const word = text.match(word_regex)
         return {
             isWord: isWord,
             value: word ? word[1].trim() : null

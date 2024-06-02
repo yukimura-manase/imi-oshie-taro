@@ -15,13 +15,13 @@ export class TemplateFactory {
 const wordExtractionTemplateText = `
     {question}
 
-    上記の質問は、言葉の意味についての質問ですか？
-    もし、言葉に関する質問ではないと判断したら、Noと答えてください。
-    また、質問された言葉を単語の形式で教えてください
+    上記の文が、言葉の意味を尋ねているかどうかを判断してください。
+    もし、言葉に関する質問だと判断したらYes、そうでない場合はしっかりとNoと答えてください。
+    また、Yesの場合は、質問の対象となる単語を教えてください。Noの場合は、空白のままにしてください。
     
     期待する回答形式:
-    is_word_question: Yes/No
-    word: 質問の対象の単語
+    asked_word_meaning: Yes/No
+    word: 尋ねられた単語
     `;
 
 
