@@ -34,4 +34,4 @@ docker-compose up --build
 
 ### 3. Web ブラウザからアクセスする
 
-http://localhost:30015/ にアクセスして App の起動を確認する
+http://localhost:3015/ にアクセスして App の起動を確認する
