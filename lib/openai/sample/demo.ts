@@ -1,6 +1,6 @@
-import { ServiceFactory } from "../factories/service";
+import { createOpenAIService } from "../factories/service";
 
-const service = ServiceFactory.createOpenAIService()
+const service = createOpenAIService()
 
 const extractWord = async () => {
     const response = await service.extractWord("時計は何ですか？")

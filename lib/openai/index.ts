@@ -1,3 +1,3 @@
-import { ServiceFactory } from "./factories/service";
+import { createOpenAIService } from "./factories/service";
 
-export default ServiceFactory;
+export default createOpenAIService;

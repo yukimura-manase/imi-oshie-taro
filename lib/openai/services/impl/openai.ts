@@ -16,20 +16,19 @@ export class OpenAIService implements OpenAIServiceInterface {
         const template = this.factory.createWordExtractionTemplate()
         const prompt = await template.invoke({ question })
         const content = await this.openAI.invoke(prompt)
-        return Formatter.extractedWordTextToObj(content)
+        return extractedWordTextToObj(content)
     }
 
     async askToExplain(word: string): Promise<Explanation> {
         const template = this.factory.createWordQuestionTemplate()
         const prompt = await template.invoke({ word })
         const content = await this.openAI.invoke(prompt)
-        return Formatter.formatExplanation(word, content)
+        return createExplanation(word, content)
     }
 }
 
-class Formatter {
-    static extractedWordTextToObj(text: string): ExtractedWord {
-        const is_word_regex = /is_word_question: (.*)/
+const extractedWordTextToObj = (text:string): ExtractedWord => {
+    const is_word_regex = /is_word_question: (.*)/
         const word_regex = /word: (.*)/
 
         const isWordStr = text.match(is_word_regex)
@@ -40,12 +39,11 @@ class Formatter {
             isWord: isWord,
             value: word ? word[1].trim() : null
         }
-    }
+}
 
-    static formatExplanation(word: string, content: string): Explanation {
-        return {
-            askedWord: word,
-            value: content
-        }
+const createExplanation = (word: string, content: string): Explanation => {
+    return {
+        askedWord: word,
+        value: content
     }
 }
