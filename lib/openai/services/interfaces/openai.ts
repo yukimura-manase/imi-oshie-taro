@@ -4,7 +4,7 @@ export type ExtractedWord = {
 }
 
 export type Explanation = {
-    value: any;
+    value: string;
     askedWord: string;
 }
 
