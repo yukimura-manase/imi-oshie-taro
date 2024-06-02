@@ -1,24 +1,36 @@
 "use client";
-import { ChatChainLLM } from "../libs/openAiLangChain";
-import { generateImageByOpenAiDalle } from "../libs/openAiDalle";
+// import { ChatChainLLM } from "../libs/openAiLangChain";
+// import { generateImageByOpenAiDalle } from "../libs/openAiDalle";
 import { synthesizeSpeech } from "@/libs/voiceVoxClient";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   console.log("Hello, World!");
 
-  ChatChainLLM("LangChainの便利な使い方を教えてください");
+  // ChatChainLLM("VOICEVOXとは、何ですか？");
   // generateImageByOpenAiDalle("かわいい白黒なねこ");
 
-  // 使用例
-  synthesizeSpeech("こんにちは、VOICEVOXです。").then((audioBlob) => {
-    // const url = URL.createObjectURL(audioBlob);
-    // const audio = new Audio(url);
-    // audio.play();
-  });
+  const [audioData, setAudioData] = useState<Blob>();
+  const [audioUrl, setAudioUrl] = useState<string>("");
+
+  useEffect(() => {
+    // 使用例
+    synthesizeSpeech("こんにちは、VOICEVOXです。").then((audioBlob: Blob) => {
+      console.log("audioBlob", audioBlob);
+      setAudioData(audioBlob);
+      const url = URL.createObjectURL(audioBlob);
+      setAudioUrl(url);
+    });
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>意味教え太郎</h1>
+      <p>音声合成を行います</p>
+      <h2>返却された音声ファイルを再生</h2>
+      <div>
+        <audio controls src={audioUrl ? audioUrl : undefined}></audio>
+      </div>
     </main>
   );
 }

@@ -14,4 +14,4 @@ const createVoice = async (text) => {
   fs.writeFileSync("voice.wav", buf);
 };
 
-// createVoice("Dockerがどっかーん");
+createVoice("Dockerがどっかーん");
