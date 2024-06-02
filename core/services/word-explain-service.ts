@@ -4,7 +4,7 @@ import WordExplanation from "../types/word-explanation"
 
 class WordExplainService {
     private teacher: WordExplainerInterface
-    __constructor(teacher: WordExplainerInterface) {
+    constructor(teacher: WordExplainerInterface) {
         this.teacher = teacher
     }
 
