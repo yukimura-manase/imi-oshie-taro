@@ -1,6 +1,5 @@
 export type ExtractedWord = {
-    value: string | null;
-    isWord: boolean;
+    value: string;
 }
 
 export type Explanation = {

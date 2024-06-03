@@ -33,13 +33,10 @@ const extractedWordTextToObj = (text:string): ExtractedWord => {
 
         const isWordStr = text.match(is_word_regex)
         const isWord = isWordStr?.[1].includes('Y')
-        if (!isWord) return { isWord: false, value: null }
+        if (!isWord) return { value: "" }
 
         const word = text.match(word_regex)
-        return {
-            isWord: isWord,
-            value: word ? word[1].trim() : null
-        }
+        return { value: word ? word[1].trim() : "" }
 }
 
 const createExplanation = (word: string, content: string): Explanation => {
