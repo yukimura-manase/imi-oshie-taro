@@ -9,11 +9,15 @@ const dallE = new DallEAPIWrapper({
   modelName: "dall-e-3",
 });
 
-export async function generateImageByOpenAiDalle(prompt: string) {
+export async function generateImageByOpenAiDalle(
+  prompt: string
+): Promise<string | null> {
   try {
     const response = await dallE._call(prompt);
     console.log("Generated image URL:", response);
+    return response;
   } catch (error) {
     console.error("Error generating image:", error);
+    return null;
   }
 }
