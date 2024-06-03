@@ -1,11 +1,11 @@
 
 import { OpenAI } from "@langchain/openai"
 
-import { OpenAIServiceInterface, Explanation, ExtractedWord } from "../interfaces/openai"
+import { ChatGPTInterface, Explanation, ExtractedWord } from "../interfaces/chatGPT"
 import { TemplateFactory } from "../../factories/templates"
 
 
-export class OpenAIService implements OpenAIServiceInterface {
+export class ChatGPT implements ChatGPTInterface {
 
     constructor(private openAI: OpenAI, private factory: TemplateFactory) {
         this.openAI = openAI
@@ -19,7 +19,7 @@ export class OpenAIService implements OpenAIServiceInterface {
         return extractedWordTextToObj(content)
     }
 
-    async askToExplain(word: string): Promise<Explanation> {
+    async explain(word: string): Promise<Explanation> {
         const template = this.factory.createWordQuestionTemplate()
         const prompt = await template.invoke({ word })
         const content = await this.openAI.invoke(prompt)

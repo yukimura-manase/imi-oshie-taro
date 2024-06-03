@@ -1,3 +1,3 @@
-import { createOpenAIService } from "./factories/service";
+import { createChatGPT } from "./factories/chatGPT";
 
-export default createOpenAIService;
+export default createChatGPT;

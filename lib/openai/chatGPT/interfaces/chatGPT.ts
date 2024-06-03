@@ -8,8 +8,8 @@ export type Explanation = {
     askedWord: string;
 }
 
-export interface OpenAIServiceInterface {
+export interface ChatGPTInterface {
     extractWord(question: string): Promise<ExtractedWord>;
-    askToExplain(word: string): Promise<Explanation>
+    explain(word: string): Promise<Explanation>
 }
 

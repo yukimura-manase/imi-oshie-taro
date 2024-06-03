@@ -1,12 +1,12 @@
 import { OpenAI } from "@langchain/openai"
 import { TemplateFactory } from "./templates"
-import { OpenAIService } from "../services/impl/openai"
+import { ChatGPT } from "../chatGPT/impl/chatGPT"
 
 
 // TODO: use DI and delete service factory
 // NOTE: I tried but DI is difficult to implement in TS or JS
-export const createOpenAIService = () => {
+export const createChatGPT = () => {
     const openAI = new OpenAI()
     const factory = new TemplateFactory()
-    return new OpenAIService(openAI, factory)
+    return new ChatGPT(openAI, factory)
 }

@@ -1,14 +1,14 @@
-import { createOpenAIService } from "../factories/service";
+import { createChatGPT } from "../factories/chatGPT";
 
-const service = createOpenAIService()
+const chatGPT = createChatGPT()
 
 const extractWord = async () => {
-    const response = await service.extractWord("時計は何ですか？")
+    const response = await chatGPT.extractWord("こんにちは、元気ですか？")
     console.log(response)
 }
 
 const explainWord = async () => {
-    const response = await service.askToExplain("時計")
+    const response = await chatGPT.explain("時計")
     console.log(response)
 }
 
