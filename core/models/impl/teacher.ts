@@ -1,6 +1,6 @@
 import { ChatGPT } from "@imi-oshie-taro/openai/chatGPT/impl/chatGPT";
-import ITeacher from "../interfaces/teacher";
-import { WordMeaning } from "../../types/explanations";
+import type ITeacher from "../interfaces/teacher";
+import type { WordMeaning } from "../../types/explanations";
 import NotAskedWordQuestion from "../../exceptions/not-asked-word-question";
 
 
@@ -8,9 +8,9 @@ class WordTeacher implements ITeacher<WordMeaning> {
     constructor(private gpt: ChatGPT) {}
 
     async explain(word: string): Promise<WordMeaning> {
-        // if (!word) {
-        //     throw new NotAskedWordQuestion()
-        // }
+        if (!word) {
+            throw new NotAskedWordQuestion()
+        }
         console.log('word', word)
         const explanation = await this.gpt.explain(word)
         return { word: explanation.askedWord, value: explanation.value }

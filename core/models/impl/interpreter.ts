@@ -1,6 +1,6 @@
 import { ChatGPT } from "@imi-oshie-taro/openai/chatGPT/impl/chatGPT";
-import IInterpreter from "../interfaces/interpreter";
-import { WordQuestionInterpretation } from "../../types/interpretation";
+import type IInterpreter from "../interfaces/interpreter";
+import type { WordQuestionInterpretation } from "../../types/interpretation";
 
 
 export class WordQuestionInterpreter implements IInterpreter<WordQuestionInterpretation> {

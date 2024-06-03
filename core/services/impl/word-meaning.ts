@@ -1,7 +1,7 @@
-import IInterpreter from "../../models/interfaces/interpreter"
-import ITeacher from "../../models/interfaces/teacher"
-import { WordMeaning } from "../../types/explanations"
-import { WordQuestionInterpretation } from "../../types/interpretation"
+import type IInterpreter from "../../models/interfaces/interpreter"
+import type ITeacher from "../../models/interfaces/teacher"
+import type { WordMeaning } from "../../types/explanations"
+import type { WordQuestionInterpretation } from "../../types/interpretation"
 
 class WordMeaningService {
     constructor(private interpreter: IInterpreter<WordQuestionInterpretation>, private teacher: ITeacher<WordMeaning>) {}

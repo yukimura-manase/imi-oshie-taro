@@ -1,5 +1,5 @@
 import { WordQuestionInterpreter } from "../models/impl/interpreter";
-import WordMeaningService from "../services/impl/word-meaing"
+import WordMeaningService from "../services/impl/word-meaning"
 import createChatGPT from "@imi-oshie-taro/openai";
 import WordTeacher from "../models/impl/teacher";
 
