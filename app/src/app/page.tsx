@@ -3,6 +3,7 @@
 // import { generateImageByOpenAiDalle } from "../libs/openAiDalle";
 import { synthesizeSpeech } from "@/libs/voiceVoxClient";
 import { useState, useEffect } from "react";
+import { Loading } from "@/components/shared/ui-elements/loading/Loading";
 
 export default function Home() {
   console.log("Hello, World!");
@@ -26,10 +27,11 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>意味教え太郎</h1>
-      <p>音声合成を行います</p>
+      <p>意味の説明, 画像生成, 音声合成を行います</p>
       <h2>返却された音声ファイルを再生</h2>
+      <div>{/* <Loading /> */}</div>
       <div>
-        <audio controls src={audioUrl ? audioUrl : undefined}></audio>
+        <audio controls src={audioUrl ? audioUrl : undefined} />
       </div>
     </main>
   );
