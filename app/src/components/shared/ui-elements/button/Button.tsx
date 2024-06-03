@@ -55,6 +55,7 @@ const Button = (props: PropsType) => {
       htmlFor={btnId}
       style={wrapperStyle ? wrapperStyle : defaultWrapperStyle}
       onClick={() => callBack()}
+      onKeyUp={() => callBack()}
     >
       <button id={btnId} style={btnStyle ? btnStyle : defaultBtnStyle}>
         <span style={textStyle ? textStyle : defaultTextStyle}>{text}</span>

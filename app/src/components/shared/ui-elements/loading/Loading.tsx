@@ -3,6 +3,7 @@ import LoadingStyles from "./Loading.module.css";
 export const Loading = () => {
   return (
     <svg
+      aria-label="Loading"
       width="48"
       height="48"
       viewBox="0 0 24 24"

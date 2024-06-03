@@ -14,14 +14,22 @@ import { synthesizeSpeech } from "@/libs/voiceVoxClient";
 export const useExplainChain = () => {
   const [image, setImage] = useState<string | null>(null);
   const generateImage = async (prompt: string) => {
-    const response = await generateImageByOpenAiDalle(prompt);
-    setImage(response);
+    try {
+      const response = await generateImageByOpenAiDalle(prompt);
+      setImage(response);
+    } catch (error) {
+      console.error("Error generating image", error);
+    }
   };
 
   const [audioData, setAudioData] = useState<Blob | undefined>(undefined);
   const generateAudio = async (prompt: string) => {
-    const response = await synthesizeSpeech(prompt);
-    setAudioData(response);
+    try {
+      const response = await synthesizeSpeech(prompt);
+      setAudioData(response);
+    } catch (error) {
+      console.error("Error generating audio", error);
+    }
   };
 
   const generateAll = async (prompt: string) => {
