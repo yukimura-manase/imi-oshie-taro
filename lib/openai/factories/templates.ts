@@ -20,7 +20,7 @@ const wordExtractionTemplateText = `
     また、Yesの場合は、質問の対象となる単語を教えてください。Noの場合は、空白のままにしてください。
     
     期待する回答形式:
-    asked_word_meaning: Yes/No
+    is_word_question: Yes/No
     word: 尋ねられた単語
     `;
 
