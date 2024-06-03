@@ -10,13 +10,7 @@ const chatModel = new ChatOpenAI({
   apiKey,
 });
 
-// export async function testChat() {
-//   console.log("testChat Call");
-//   const response = await chatModel.invoke("what is LangSmith?");
-//   console.log(response);
-// }
-
-const prompt = ChatPromptTemplate.fromMessages([
+export const prompt = ChatPromptTemplate.fromMessages([
   // GPTのペルソナ設定
   [
     "system",
@@ -26,21 +20,11 @@ const prompt = ChatPromptTemplate.fromMessages([
   ["user", "{input}"],
 ]);
 
-// const chain = prompt.pipe(chatModel);
-
-// export async function testChatChain() {
-//   console.log("testChatChain Call");
-//   const response = await chain.invoke({
-//     input: "東京タワーはどこにありますか？",
-//   });
-//   console.log(response);
-// }
-
 const outputParser = new StringOutputParser();
 
 const llmChain = prompt.pipe(chatModel).pipe(outputParser);
 
-// outputParser を使って Responseから、回答のみを取り出す
+// 3. outputParser を使って Responseから、回答のみを取り出すパターン
 export async function ChatChainLLM(query: string) {
   const response = await llmChain.invoke({
     input: query,

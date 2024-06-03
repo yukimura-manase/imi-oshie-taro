@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export async function synthesizeSpeech(text: string) {
-  // 音声合成の Query 作成をリクエストする
+// 音声合成に必要なデータ(クエリ)を作成する
+export async function generateAudioQuery(text: string) {
   const response = await axios.post(
     "http://localhost:50021/audio_query",
     null,
@@ -16,8 +16,14 @@ export async function synthesizeSpeech(text: string) {
     }
   );
   console.log("response", response);
-  const audioQuery = response.data;
-  console.log("audioQuery", audioQuery);
+  return { audioQuery: response.data };
+}
+
+/**
+ * 音声合成
+ */
+export async function synthesizeSpeech(text: string): Promise<Blob> {
+  const { audioQuery } = await generateAudioQuery(text);
 
   // 音声合成をリクエストする
   const synthesisResponse = await axios.post(
@@ -31,6 +37,5 @@ export async function synthesizeSpeech(text: string) {
     }
   );
   console.log("synthesisResponse", synthesisResponse);
-
   return new Blob([synthesisResponse.data], { type: "audio/wav" });
 }
