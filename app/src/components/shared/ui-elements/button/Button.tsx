@@ -1,4 +1,4 @@
-import { CSSProperties, Dispatch, SetStateAction } from "react";
+import { CSSProperties } from "react";
 
 /** Propsの型定義 */
 interface PropsType {
@@ -14,7 +14,6 @@ interface PropsType {
 
 /**
  * Button
- * - SVG_Icon or img & Text(MSG) を表示する Btn
  */
 const Button = (props: PropsType) => {
   const { btnId, text, callBack, wrapperStyle, btnStyle, textStyle } = props;

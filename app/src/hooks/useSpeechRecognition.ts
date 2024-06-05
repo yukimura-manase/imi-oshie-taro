@@ -1,14 +1,15 @@
+import { voiceInputActions } from "@/store/voiceInput";
 import { useState, useEffect, useRef } from "react";
 
 export type SpeechRecognitionHookReturn = {
-    isRecording: boolean;
-    recordingComplete: boolean;
-    transcript: string;
-    handleToggleRecording: () => void;
+  isRecording: boolean;
+  recordingComplete: boolean;
+  transcript: string;
+  handleToggleRecording: () => void;
 };
 
 const useSpeechRecognition = (): SpeechRecognitionHookReturn => {
-    // State variables to manage recording status, completion, and transcript
+  // State variables to manage recording status, completion, and transcript
   const [isRecording, setIsRecording] = useState(false);
   const [recordingComplete, setRecordingComplete] = useState(false);
   const [transcript, setTranscript] = useState("");
@@ -33,6 +34,8 @@ const useSpeechRecognition = (): SpeechRecognitionHookReturn => {
       // Log the recognition results and update the transcript state
       console.log(event.results);
       setTranscript(transcript);
+      // Store
+      voiceInputActions.setTranscript(transcript);
     };
 
     // Start the speech recognition
@@ -74,6 +77,6 @@ const useSpeechRecognition = (): SpeechRecognitionHookReturn => {
     transcript,
     handleToggleRecording,
   };
-}
+};
 
 export default useSpeechRecognition;
