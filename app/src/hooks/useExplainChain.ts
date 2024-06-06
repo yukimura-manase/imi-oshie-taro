@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import { generateImageByOpenAiDalle } from "@/libs/openAiDalle";
 import { synthesizeSpeech } from "@/libs/voiceVoxClient";
-import { ChatChainLLM } from "@/libs/openAiLangChain";
+
+import createWordMeaningService from "@/libs/imiOshieTaro/core";
 
 /**
  * 画像生成, 音声生成の Custom Hook
@@ -18,53 +19,54 @@ export const useExplainChain = (transcript: string) => {
   const [isLoading, setIsLoading] = useState(true);
 
   // User からの質問を受けて、回答を生成する (文章生成)
-  const [text, setText] = useState<string>("");
-  const generateDescription = async (text: string) => {
-    try {
-      // TODO: ここで 意味教え太郎の文章生成を実行する
-      const resText = await ChatChainLLM(text);
-      setText(resText);
+  // word: 単語, description: 単語の説明
+  const [word, setWord] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
-      // TODO: ここで、画像生成用のプロンプトを Set する
-      // 画像生成するために、最適化された文章出ないと、画像生成が上手くいかない (API Error が発生する)
-      setImagePrompt(resText);
+  const generateDescription = async (text: string) => {
+    console.log("generateDescription", text);
+    console.log(
+      "process.env.NEXT_PUBLIC_OPEN_AI_API_KEY",
+      process.env.NEXT_PUBLIC_OPEN_AI_API_KEY
+    );
+
+    try {
+      const service = createWordMeaningService(
+        process.env.NEXT_PUBLIC_OPEN_AI_API_KEY ?? ""
+      );
+      const meaning = await service.getMeaning(text);
+      setWord(meaning.word);
+      setDescription(meaning.value);
+      return meaning;
     } catch (error) {
       console.error("Error generating description", error);
     }
   };
 
-  // 画像生成用のプロンプト: 画像生成するために、最適化された文章
-  // 画像生成するために、最適化された文章出ないと、画像生成が上手くいかない (API Error が発生する)
-  const [imagePrompt, setImagePrompt] = useState<string>("");
   // 生成された画像
   const [image, setImage] = useState<string | null>(null);
 
   // 画像を生成する (画像生成)
-  const generateImage = async (prompt: string) => {
+  const generateImage = async (word: string) => {
     try {
-      // const response = await generateImageByOpenAiDalle(prompt);
-      // TODO: Test
-      const response = await generateImageByOpenAiDalle("可愛い白黒なねこ");
+      // ここで、画像生成用のプロンプトを作成する
+      // 画像生成するために、最適化された文章出ないと、画像生成が上手くいかない (API Error が発生する)
+      const prompt = `${word}の画像を生成してください。`;
+      const response = await generateImageByOpenAiDalle(prompt);
       setImage(response);
     } catch (error) {
       console.error("Error generating image", error);
     }
   };
 
-  // 音声生成用のプロンプト: 音声生成するために、最適化された文章
-  const [audioPrompt, setAudioPrompt] = useState<string>("");
   // 音声ファイル Blob, URL
   const [audioData, setAudioData] = useState<Blob | undefined>(undefined);
   const [audioUrl, setAudioUrl] = useState<string>("");
 
   // 音声を生成する (音声生成)
-  const generateAudio = async (prompt: string) => {
+  const generateAudio = async (description: string) => {
     try {
-      const test =
-        "猫は、かわいらしい動物で、しっぽがフワフワしていて、小さな肉球がとってもかわいい生き物ですよ。";
-
-      // TODO: Test
-      const audioBlob = await synthesizeSpeech(test);
+      const audioBlob = await synthesizeSpeech(description);
       setAudioData(audioBlob);
       const url = URL.createObjectURL(audioBlob);
       setAudioUrl(url);
@@ -73,41 +75,29 @@ export const useExplainChain = (transcript: string) => {
     }
   };
 
-  const testGenerateAudio = async () => {
-    // 使用例
-    synthesizeSpeech("こんにちは、VOICEVOXです。").then((audioBlob: Blob) => {
-      console.log("audioBlob", audioBlob);
-      setAudioData(audioBlob);
-      const url = URL.createObjectURL(audioBlob);
-      setAudioUrl(url);
-    });
-  };
-
   // 画像生成, 音声生成は、並列・非同期で実行
-  const generateAll = async (prompt: string) => {
+  const generateAll = async (word: string, description: string) => {
     setIsLoading(true);
-    await Promise.all([generateImage(prompt), generateAudio(prompt)]);
-
-    // TODO: Test
-    // await Promise.all([generateImage(prompt), testGenerateAudio()]);
+    await Promise.all([generateImage(word), generateAudio(description)]);
     setIsLoading(false);
   };
-
   // 初回レンダリング時に、まずは文章生成を実行する
   // 文章生成が終わったら、画像生成, 音声生成を実行する
   useEffect(() => {
-    generateDescription(transcript).then(() => {
-      generateAll(text);
+    generateDescription(transcript).then((meaning) => {
+      console.log("meaning", meaning);
+      meaning && generateAll(meaning.word, meaning.value);
     });
   }, []);
 
   return {
     isLoading,
-    text,
+    word,
+    description,
     image,
     audioData,
     audioUrl,
-    setText,
+    setWord,
     generateImage,
     generateAudio,
     generateAll,

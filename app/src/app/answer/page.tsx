@@ -19,17 +19,17 @@ export default function Answer() {
   console.log("transcript", transcript);
 
   // 2. Custom Hook を使って、回答の文章, 画像, 音声を生成する
-  const { isLoading, text, image, audioData, audioUrl } =
+  const { isLoading, description, image, audioData, audioUrl } =
     useExplainChain(transcript);
 
   // TODO: Test実行
   useEffect(() => {
     console.log("isLoading", isLoading);
-    console.log("text", text);
+    console.log("description", description);
     console.log("image", image);
     console.log("audioData", audioData);
     console.log("audioUrl", audioUrl);
-  }, [isLoading, text, image, audioData, audioUrl]);
+  }, [isLoading, description, image, audioData, audioUrl]);
 
   // 音声再生用の ref
   const audioRef = useRef(null);
@@ -93,7 +93,7 @@ export default function Answer() {
                 padding: "12px",
               }}
             >
-              {text}
+              {description}
             </div>
             <div>
               <audio

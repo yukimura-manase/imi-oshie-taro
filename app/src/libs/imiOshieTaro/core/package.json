@@ -1,0 +1,18 @@
+{
+  "name": "@imi-oshie-taro/core",
+  "version": "1.0.0",
+  "description": "core domain library for imi-oshie-taro",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@imi-oshie-taro/openai": "../lib/openai"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
