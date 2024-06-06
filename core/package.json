@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@imi-oshie-taro/core",
   "version": "1.0.0",
   "description": "core domain library for imi-oshie-taro",
   "main": "./dist/index.js",
