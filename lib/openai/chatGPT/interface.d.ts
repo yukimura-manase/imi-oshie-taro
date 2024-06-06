@@ -7,7 +7,7 @@ export type Explanation = {
     askedWord: string;
 }
 
-export interface ChatGPTInterface {
+export interface IChatGPT {
     extractWord(question: string): Promise<ExtractedWord>;
     explain(word: string): Promise<Explanation>
 }

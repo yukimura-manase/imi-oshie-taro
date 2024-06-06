@@ -1,5 +1,5 @@
 import { OpenAI } from "@langchain/openai"
-import { TemplateFactory } from "./templates"
+import { ChatTemplateFactory } from "./templates"
 import { ChatGPT } from "../chatGPT/impl/chatGPT"
 
 // TODO: use DI and delete service factory
@@ -8,6 +8,6 @@ export const createChatGPT = (apiKey: string): ChatGPT => {
     const openAI = new OpenAI({
         apiKey: apiKey
     })
-    const factory = new TemplateFactory()
+    const factory = new ChatTemplateFactory()
     return new ChatGPT(openAI, factory)
 }
