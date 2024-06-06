@@ -1,7 +1,7 @@
 import { PromptTemplate } from "@langchain/core/prompts";
 
 
-export class TemplateFactory {
+export class ChatTemplateFactory {
     createWordExtractionTemplate() {
         return PromptTemplate.fromTemplate(wordExtractionTemplateText);
     }

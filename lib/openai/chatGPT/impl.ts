@@ -1,13 +1,13 @@
 
 import { OpenAI } from "@langchain/openai"
 
-import { ChatGPTInterface, Explanation, ExtractedWord } from "../interfaces/chatGPT"
-import { TemplateFactory } from "../../factories/templates"
+import { ChatTemplateFactory } from "../factories"
+import { Explanation, ExtractedWord, IChatGPT } from "./interface"
 
 
-export class ChatGPT implements ChatGPTInterface {
+export class ChatGPT implements IChatGPT {
 
-    constructor(private openAI: OpenAI, private factory: TemplateFactory) {
+    constructor(private openAI: OpenAI, private factory: ChatTemplateFactory) {
         this.openAI = openAI
         this.factory = factory
     }
