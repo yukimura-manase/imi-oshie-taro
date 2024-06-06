@@ -7,6 +7,7 @@
   dependencies:
     dotenv "^16.4.5"
     langchain "^0.2.4"
+    openai "^4.48.2"
 
 "@langchain/core@>0.1.0  <0.3.0", "@langchain/core@>=0.2.5 <0.3.0", "@langchain/core@~0.2.0":
   version "0.2.5"
@@ -333,6 +334,20 @@ openai@^4.41.1:
   version "4.47.3"
   resolved "https://registry.yarnpkg.com/openai/-/openai-4.47.3.tgz#5d01f4a5a06fc390ba67477848278ffc9b3b2b2c"
   integrity sha512-470d4ibH5kizXflCzgur22GpM4nOjrg7WQ9jTOa3dNKEn248oBy4+pjOyfcFR4V4YUn/YlDNjp6h83PbviCCKQ==
+  dependencies:
+    "@types/node" "^18.11.18"
+    "@types/node-fetch" "^2.6.4"
+    abort-controller "^3.0.0"
+    agentkeepalive "^4.2.1"
+    form-data-encoder "1.7.2"
+    formdata-node "^4.3.2"
+    node-fetch "^2.6.7"
+    web-streams-polyfill "^3.2.1"
+
+openai@^4.48.2:
+  version "4.48.3"
+  resolved "https://registry.yarnpkg.com/openai/-/openai-4.48.3.tgz#3390e137035b5e6d6f97ff517273c71686e0d574"
+  integrity sha512-EmyvU39gEUWlSMVaL5l351DIEq2iMmtyQHpJHOdJnPIULiIbRtFlgyZh8w+svs5Dh/Z2J5m0Svzpk174YWUHpQ==
   dependencies:
     "@types/node" "^18.11.18"
     "@types/node-fetch" "^2.6.4"
