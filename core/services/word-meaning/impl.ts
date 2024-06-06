@@ -1,9 +1,10 @@
-import type IInterpreter from "../../models/interfaces/interpreter"
-import type ITeacher from "../../models/interfaces/teacher"
-import type { WordMeaning } from "../../types/explanations"
+import type { IInterpreter } from "../../models"
+import type { ITeacher } from "../../models"
+import type { WordMeaning } from "../../types/meaning"
 import type { WordQuestionInterpretation } from "../../types/interpretation"
+import { IWordMeaningService } from "./interface"
 
-class WordMeaningService {
+export class WordMeaningService implements IWordMeaningService {
     constructor(private interpreter: IInterpreter<WordQuestionInterpretation>, private teacher: ITeacher<WordMeaning>) {}
 
     async getMeaning(question: string): Promise<WordMeaning> {
@@ -11,5 +12,3 @@ class WordMeaningService {
         return this.teacher.explain(interpretation.askedWord)
     }
 }
-
-export default WordMeaningService;
