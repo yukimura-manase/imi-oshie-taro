@@ -1,10 +1,10 @@
 import { ChatGPT } from "@imi-oshie-taro/openai/chatGPT/impl/chatGPT";
-import type ITeacher from "../interfaces/teacher";
-import type { WordMeaning } from "../../types/explanations";
-import NotAskedWordQuestion from "../../exceptions/not-asked-word-question";
+import type { ITeacher } from "./interface";
+import type { WordMeaning } from "../../types/meaning";
+import { NotAskedWordQuestion } from "../../exceptions";
 
 
-class WordTeacher implements ITeacher<WordMeaning> {
+export class WordTeacher implements ITeacher<WordMeaning> {
     constructor(private gpt: ChatGPT) {}
 
     async explain(word: string): Promise<WordMeaning> {
@@ -16,5 +16,3 @@ class WordTeacher implements ITeacher<WordMeaning> {
         return { word: explanation.askedWord, value: explanation.value }
     }
 }
-
-export default WordTeacher;
