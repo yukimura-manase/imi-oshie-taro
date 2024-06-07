@@ -26,8 +26,9 @@ const llmChain = prompt.pipe(chatModel).pipe(outputParser);
 
 // 3. outputParser を使って Responseから、回答のみを取り出すパターン
 export async function ChatChainLLM(query: string) {
-  const response = await llmChain.invoke({
+  const resText = await llmChain.invoke({
     input: query,
   });
-  console.log(response);
+  console.log(resText);
+  return resText;
 }

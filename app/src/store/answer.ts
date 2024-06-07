@@ -5,7 +5,9 @@ interface AnswerStateType {
 }
 
 export const answerStates = proxy<AnswerStateType>({
-  answerText: "",
+  // TODO: Test
+  answerText: "ねこは、もふもふしていて、耳が2つある可愛い生き物です",
+  // answerText: "",
 });
 
 export const answerActions = {

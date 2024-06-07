@@ -1,38 +1,29 @@
 "use client";
-// import { ChatChainLLM } from "../libs/openAiLangChain";
-// import { generateImageByOpenAiDalle } from "../libs/openAiDalle";
-import { synthesizeSpeech } from "@/libs/voiceVoxClient";
-import { useState, useEffect } from "react";
-import { Loading } from "@/components/shared/ui-elements/loading/Loading";
 
-export default function Home() {
-  console.log("Hello, World!");
+import styles from "./style.module.css";
+import Title from "@/components/shared/ui-elements/Title";
+import Taro from "@/components/shared/ui-elements/Taro";
+import VoiceInput from "@/components/shared/ui-parts/VoiceInput";
+import Button from "@/components/shared/ui-elements/button/Button";
+import { useRouter } from "next/navigation";
 
-  // ChatChainLLM("VOICEVOXとは、何ですか？");
-  // generateImageByOpenAiDalle("かわいい白黒なねこ");
-
-  const [audioData, setAudioData] = useState<Blob>();
-  const [audioUrl, setAudioUrl] = useState<string>("");
-
-  useEffect(() => {
-    // 使用例
-    synthesizeSpeech("こんにちは、VOICEVOXです。").then((audioBlob: Blob) => {
-      console.log("audioBlob", audioBlob);
-      setAudioData(audioBlob);
-      const url = URL.createObjectURL(audioBlob);
-      setAudioUrl(url);
-    });
-  }, []);
+const Home = (): JSX.Element => {
+  const router = useRouter();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>意味教え太郎</h1>
-      <p>意味の説明, 画像生成, 音声合成を行います</p>
-      <h2>返却された音声ファイルを再生</h2>
-      <div>{/* <Loading /> */}</div>
-      <div>
-        <audio controls src={audioUrl ? audioUrl : undefined} />
-      </div>
-    </main>
+    <>
+      <main className={styles.box}>
+        <Title title="意味教え太郎" subTitle="意味教えアシスタント" />
+        <Taro />
+        <VoiceInput />
+        <Button
+          btnId="submit"
+          text="AIに質問する"
+          callBack={() => router.push("/answer")}
+        />
+      </main>
+    </>
   );
-}
+};
+
+export default Home;

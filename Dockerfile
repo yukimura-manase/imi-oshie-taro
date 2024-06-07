@@ -5,6 +5,7 @@ FROM node:lts
 ENV HOST 0.0.0.0
 
 # Docker Cotainer上の作業ディレクトリ
+# WORKDIR /usr/src/app
 WORKDIR /usr/src/app
 
 # Docker コンテナが起動されたときに実行されるコマンド

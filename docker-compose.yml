@@ -9,6 +9,11 @@ services:
     # ホストマシン:コンテナ => ファイルを共有するための設定
     volumes:
       - ./app:/usr/src/app
+      - ./app/node_modules:/usr/src/app/node_modules
+      - ./core:/usr/src/core
+      # - ./core/node_modules:/usr/src/core/node_modules
+      # - ./lib/openai:/usr/src/lib/openai
+      # - ./lib/openai/node_modules:/usr/src/lib/openai/node_modules
     # ホストマシンPort番号:コンテナのPost番号
     ports:
       # Next.js との ポートフォワード

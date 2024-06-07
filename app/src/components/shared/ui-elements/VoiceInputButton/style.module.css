@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.stop {
+    width: 5rem;
+    height: 5rem;
+    margin-top: 0.5rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F87171;
+    border-radius: 9999px;
+
+}
+
+.stop:hover {
+    background-color: #EF4444;
+}
+
+.stop:focus {
+    outline: none;
+}
+
+.stopIcon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.start {
+    width: 5rem;
+    height: 5rem;
+    margin-top: 0.5rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9CA3AF;
+    border-radius: 9999px;
+}
+
+.start:hover {
+    background-color: #6B7280;
+}
+
+.start:focus {
+    outline: none;
+}
+
+.startIcon {
+    width: 3rem;
+    height: 3rem;
+    color: #ffffff;
+}
