@@ -14,7 +14,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@imi-oshie-taro/core": "../core",
     "@langchain/openai": "^0.1.1",
     "axios": "^1.7.2",
     "langchain": "^0.2.4",
