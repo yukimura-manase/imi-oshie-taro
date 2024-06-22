@@ -8,6 +8,13 @@
 
 1. 言葉に対して、その意味をわかりやすく説明, 画像生成, 音声読み上げまでしてくれる
 
+[![「パパ活」ってなあに？ 子供向け学習アシスタント「意味教え太郎」に聞いてみた！](./img/Youtube.png)](https://www.youtube.com/watch?v=kil0ps5cBzY&t=1s)
+
+<div style="display: flex; gap:12px;">
+  <img src="./img/imiOshieTaro-query.png" >
+  <img src="./img/answer-cat.png" >
+</div>
+
 ## 環境構築方法(初期 setup)
 
 <br>
@@ -24,14 +31,36 @@ app ディレクトリに移動して、パッケージを install する
 cd app/ && yarn install
 ```
 
-### 2. Docker Image の Build & Docker Container の起動
+### 2. .env ファイルの作成
 
-Docker Image のビルド と コンテナの実行を実施します。
+1. `app/.env.example` を Copy して、`.env`ファイルを作成してください。
+
+2. `NEXT_PUBLIC_OPEN_AI_API_KEY` に OpenAI の API Key を Set します。
+
+```bash: .env
+# OpenAI API key
+NEXT_PUBLIC_OPEN_AI_API_KEY=your-openai-api-key
+
+# VOICE VOX API URL
+VOICE_VOX_API_URL=http://localhost:50021
+```
+
+### 3. Docker Image の Build & Docker Container の起動
+
+1. Docker Image のビルド と コンテナの実行を実施します。
 
 ```bash
 docker-compose up --build
 ```
 
-### 3. Web ブラウザからアクセスする
+2. VOICE-VOX Container を立ち上げる
+
+```bash
+cd voice-vox
+
+docker compose up
+```
+
+### 4. Web ブラウザからアクセスする
 
 http://localhost:3015/ にアクセスして App の起動を確認する

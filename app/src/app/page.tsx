@@ -20,6 +20,20 @@ const Home = (): JSX.Element => {
           btnId="submit"
           text="AIに質問する"
           callBack={() => router.push("/answer")}
+          wrapperStyle={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            width: "170px",
+            height: "35px",
+            backgroundColor: "#59B9C6",
+            borderRadius: "8px",
+            color: "#fff",
+            fontWeight: "600",
+            cursor: "pointer",
+            marginBottom: "20px",
+          }}
         />
       </main>
     </>
