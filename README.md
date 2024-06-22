@@ -10,14 +10,7 @@
 
 [![「パパ活」ってなあに？ 子供向け学習アシスタント「意味教え太郎」に聞いてみた！](./img/Youtube.png)](https://www.youtube.com/watch?v=kil0ps5cBzY&t=1s)
 
-<div style="display: flex; gap:12px;">
-  <img src="./img/imiOshieTaro-query.png" >
-  <img src="./img/answer-cat.png" >
-</div>
-
 ## 環境構築方法(初期 setup)
-
-<br>
 
 ### 0. 前提条件
 
