@@ -4,6 +4,8 @@
 
 - [#生成 AI オンラインハッカソン 4 by #protopedia](https://mashupawards.connpass.com/event/318385/) に参加した際に開発したアプリ
 
+- 作品説明ページは[こちら](https://protopedia.net/prototype/5245)
+
 ## App 概要
 
 1. 言葉に対して、その意味をわかりやすく説明, 画像生成, 音声読み上げまでしてくれる
